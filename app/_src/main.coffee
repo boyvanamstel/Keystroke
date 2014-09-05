@@ -1,2 +1,2 @@
 keystroke = new DCOKeystroke(document.getElementById('keystroke'))
-keystroke.type("OMG! It. Just. Works!", 500)
+keystroke.type("OMG! It. Just. Works!", 600)

@@ -13,8 +13,8 @@
     min-width: 100px;
     min-height: 100px;
     padding: 0 20px;
-    animation: 0.2s fadeOut forwards;
-    animation-delay: .3s;
+    animation: 0.3s fadeOut forwards;
+    animation-delay: .2s;
     &.ended {
       display: none;
     }
