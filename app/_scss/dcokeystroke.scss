@@ -1,0 +1,37 @@
+#keystroke {
+  font-size: 72px;
+  line-height: 100px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 3em;
+  span {
+    opacity: 1.0;
+    display: inline-block;
+    border-radius: 4px;
+    background: #333;
+    color: white;
+    min-width: 100px;
+    min-height: 100px;
+    padding: 0 20px;
+    animation: 0.3s fadeOut forwards;
+    animation-delay: .2s;
+    &.ended {
+      display: none;
+    }
+  }
+  .char-space {
+    width: 300px;
+  }
+  .char-new-line:before,.char-carriage-return:before {
+    content: "<-|";
+  }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: .0;
+    }
+}

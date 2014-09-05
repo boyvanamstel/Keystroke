@@ -1,8 +1,11 @@
 // bower:scss
 // endbower
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
 }

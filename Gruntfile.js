@@ -30,13 +30,12 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
-      bower: {
-        files: ['bower.json'],
-        tasks: ['wiredep']
-      },
       coffee: {
         files: ['<%= config.app %>/_src/**/*.coffee'],
-        tasks: ['coffee:dist']
+        tasks: ['coffee:dist'],
+        options: {
+          livereload: true
+        }
       },
       coffeeTest: {
         files: ['test/spec/**/*.coffee'],
@@ -62,7 +61,7 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['<%= config.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+        tasks: ['autoprefixer']
       },
       livereload: {
         options: {
@@ -229,18 +228,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Automatically inject Bower components into the HTML file
-    wiredep: {
-      app: {
-        ignorePath: /^\/|\.\.\//,
-        src: ['<%= config.app %>/index.html']
-      },
-      sass: {
-        src: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        ignorePath: /(\.\.\/){1,2}bower_components\//
-      }
-    },
-
     // Renames files for browser caching purposes
     rev: {
       dist: {
@@ -403,7 +390,6 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'wiredep',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -427,28 +413,21 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'connect:test',
-      'mocha'
     ]);
   });
 
   grunt.registerTask('build', [
     'clean:dist',
-    'wiredep',
-    'useminPrepare',
     'concurrent:dist',
-    'autoprefixer',
+    'useminPrepare',
     'concat',
+    'autoprefixer:dist',
     'cssmin',
     'uglify',
-    'imagemin',
-    'svgmin',
-    'rev',
     'usemin',
-    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
-    'newer:jshint',
     'test',
     'build'
   ]);
